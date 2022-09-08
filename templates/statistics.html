@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/common.css" rel="stylesheet">
+    <style>
+        .teams {
+            display: flex;
+        }
+
+        .team {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Статистика команд</h1>
+        <div class="teams">
+            {% for team in game.teams %}
+                <div class="team">
+                    <h2>{{ team.name }}</h2>
+                    <div class="statistics-title">Отгаданные слова ({{team.words|length}}/{{game.win_count}})</div>
+                    {% for word in team.words %}
+                        <div>{{word}}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            document.querySelectorAll('.link').forEach(x => {
+                const protocol = location.href.split('//')[0];
+                const host = location.href.split('//')[1].split('/')[0]
+                x.value = `${protocol}//${host}${x.value}`;
+            })
+        });
+    </script>
+
+</body>
+</html>

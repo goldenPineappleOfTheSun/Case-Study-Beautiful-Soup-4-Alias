@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/common.css" rel="stylesheet">
+    <style>
+        .word {
+            font-size: 5rem;
+            margin: 1rem 0 5rem 0;
+            font-weight: 1000;
+            color: rgb(238 213 144);
+        }
+
+        .button.plus {    
+            margin: 0.5rem 0 2rem 0;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 20rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            background: rgb(238 213 144);    
+            font-weight: 1000;
+            color: black;
+            font-family: 'Alumni Sans Pinstripe', sans-serif;
+        }
+
+        .button.plus:hover {  
+            color: #928c42;
+        }
+
+        .svg {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+        }
+
+        .circle {
+            fill: transparent;
+            stroke: rgb(238 213 144);
+            stroke-width: 30px;
+            opacity: 0.1;
+            stroke-dasharray: 1256;
+            stroke-dashoffset: 1256;
+            animation: clock-animation {{game.round_size}}s linear;
+            transform: rotate(-90deg);
+            transform-origin: center;
+        }
+
+        @keyframes clock-animation {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: 1256;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <svg class="svg">
+        <circle class="circle" cx="50%" cy="50%" r="200"></circle>
+    </svg>
+
+    <div class="container">
+        <h1>Объясните слово:</h1>
+        <div class="word">{{word}}</div>         
+        <a style="z-index: 1" href="{{app.url_path_for('plus', game_code=game.code, team_code=team.code, player_code=player.code, word=word)}}">
+            <div class="plus button">Отгадал!</div>
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            document.querySelectorAll('.link').forEach(x => {
+                const protocol = location.href.split('//')[0];
+                const host = location.href.split('//')[1].split('/')[0]
+                x.value = `${protocol}//${host}${x.value}`;
+            })
+        });
+    </script>
+
+</body>
+</html>

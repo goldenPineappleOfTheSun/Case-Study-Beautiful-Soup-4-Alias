@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/common.css" rel="stylesheet">
+    <style>
+        .win-count, .teams-count {
+            margin: 0.5rem 0 2rem 0;
+            padding: 1rem;
+            font-size: 3rem;
+            text-align: center;
+            max-width: 20rem;
+            border: 3px solid;
+        }
+
+        .submit {    
+            margin: 0.5rem 0 2rem 0;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 20rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            font-weight: 1000;
+            font-family: 'Alumni Sans Pinstripe', sans-serif;
+        }
+
+        .wordpacks {    
+            font-size: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="container" action="{{app.url_path_for('generate_game')}}">
+        <h1>Создать игру</h1>
+        <label for="wordpack">Режим</label>
+        <select name="wordpack" class="wordpacks input">
+            {% for wordpack in wordpacks %}
+                <option>{{wordpack}}</option>
+            {% endfor %}
+        </select>
+        <label for="win-count">Количество слов для победы</label>
+        <input class="win-count input" type="text" name="win-count" pattern="^[0-9]+$" title="Только цифры" value="30">
+        <label for="teams-count">Количество команд</label>
+        <input class="teams-count input" type="text" name="teams-count" pattern="^[0-9]+$" title="Только цифры" value="2">
+        <input class="submit button" type="submit">
+    </form>
+    
+</body>
+</html>

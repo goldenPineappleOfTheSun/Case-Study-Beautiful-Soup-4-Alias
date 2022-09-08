@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/common.css" rel="stylesheet">
+    <style>
+        .ready {    
+            margin: 0.5rem 0 2rem 0;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 20rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            background: rgb(238 213 144);    
+            font-weight: 1000;
+            font-family: 'Alumni Sans Pinstripe', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ваша команда {{team.name}}</h1>
+        <div class="word">{{word}}</div>
+        <a href="{{app.url_path_for('ready', game_code=game.code, team_code=team.code, player_code=player.code)}}">
+            <div class="ready">Готов объяснять!</div>
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            document.querySelectorAll('.link').forEach(x => {
+                const protocol = location.href.split('//')[0];
+                const host = location.href.split('//')[1].split('/')[0]
+                x.value = `${protocol}//${host}${x.value}`;
+            })
+        });
+    </script>
+
+</body>
+</html>

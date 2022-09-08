@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/common.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ваша команда {{team.name}}</h1>
+        <p>Ожидайте начала игры</p>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            document.querySelectorAll('.link').forEach(x => {
+                const protocol = location.href.split('//')[0];
+                const host = location.href.split('//')[1].split('/')[0]
+                x.value = `${protocol}//${host}${x.value}`;
+            })
+        });
+    </script>
+
+</body>
+</html>
